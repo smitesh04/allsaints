@@ -30,8 +30,7 @@ class StoreLocatorSpider(scrapy.Spider):
         }
         yield scrapy.Request(url, headers=headers, callback=self.parse)
 
-
-    def parse(self, response):
+    def parse(self, response, **kwargs):
         all_urls = re.findall('https.*?</loc>', response.text)
         for url in all_urls:
             url = url.replace('</loc>', '')
